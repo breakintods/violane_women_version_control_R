@@ -1,3 +1,4 @@
+# get data
 data<-read.csv("Violence_Against_Women_Girls_Data.csv")
 
 library(tidyverse)
