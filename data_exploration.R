@@ -45,6 +45,7 @@ data_top_yr%>%ggplot(aes(x=factor(Survey.Year),y=Value,
   facet_trelliscope(~ Country, as_plotly = T, height = 720, width = 1420,
                     path = 'C:/Users/пк/Desktop/R_Git_Hub/violane_women_version_control_R')
 
+<<<<<<< HEAD
 # transform the data from long to wide form
 
 library("reshape2")
@@ -52,5 +53,8 @@ data_wide<-dcast(data, Demographics.Question,
                  value.var="Demographics.Response")
 test<-data%>%filter(RecordID%in%"1",
                     Demographics.Question%in%"Marital status")
+=======
+
+>>>>>>> 488c4dcfcd814ca28d40de9fa5bd400509beb0a2
 
 
