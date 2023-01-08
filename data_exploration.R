@@ -48,7 +48,6 @@ data_top_yr%>%ggplot(aes(x=factor(Survey.Year),y=Value,
 # transform the data from long to wide form
 
 library("reshape2")
-
 data_wide<-dcast(data, Demographics.Question, 
                  value.var="Demographics.Response")
 test<-data%>%filter(RecordID%in%"1",
