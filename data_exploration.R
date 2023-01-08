@@ -31,14 +31,27 @@ data_top_yr<-data%>%group_by(Question,Survey.Year,Gender,Country)%>%
 library(gridExtra)
 library(trelliscopejs)
 
-data_top_yr%>%ggplot(aes(x=factor(Survey.Year),y=Value))+
-  geom_point() +
-  theme_dark() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+data_top_yr%>%ggplot(aes(x=factor(Survey.Year),y=Value,
+                         color = Gender,
+                         fill = Gender))+
+  geom_bar(stat="identity") +
+  theme_get() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position="none")+
   labs(x='Year') +
   labs(y='% of people who agree with the question') + 
   facet_grid(Gender~Question)+
   ggtitle("A husband is justified in hitting or beating his wife") +
-  facet_trelliscope(~ Country, as_plotly = T, height = 720, width = 1380,
+  facet_trelliscope(~ Country, as_plotly = T, height = 720, width = 1420,
                     path = 'C:/Users/пк/Desktop/R_Git_Hub/violane_women_version_control_R')
+
+# transform the data from long to wide form
+
+library("reshape2")
+
+data_wide<-dcast(data, Demographics.Question, 
+                 value.var="Demographics.Response")
+test<-data%>%filter(RecordID%in%"1",
+                    Demographics.Question%in%"Marital status")
+
 
