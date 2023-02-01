@@ -45,16 +45,81 @@ data_top_yr%>%ggplot(aes(x=factor(Survey.Year),y=Value,
   facet_trelliscope(~ Country, as_plotly = T, height = 720, width = 1420,
                     path = 'C:/Users/пк/Desktop/R_Git_Hub/violane_women_version_control_R')
 
-<<<<<<< HEAD
-# transform the data from long to wide form
 
-library("reshape2")
-data_wide<-dcast(data, Demographics.Question, 
-                 value.var="Demographics.Response")
-test<-data%>%filter(RecordID%in%"1",
-                    Demographics.Question%in%"Marital status")
-=======
+# a few ggplots
 
->>>>>>> 488c4dcfcd814ca28d40de9fa5bd400509beb0a2
+burns_food_marital<-data%>%
+  filter(Question == " if she burns the food")%>%
+  filter(Demographics.Question == "Marital status")%>%
+  group_by(Gender, Demographics.Response)%>%
+  summarise(Value = mean(Value,na.rm=T))%>%
+  mutate(Gender = as.factor(Gender),
+         Demographics.Response = as.factor(Demographics.Response))
+
+burns_food_educ<-data%>%
+  filter(Question == " if she burns the food")%>%
+  filter(Demographics.Question == "Education")%>%
+  group_by(Gender, Demographics.Response)%>%
+  summarise(Value = mean(Value,na.rm=T))%>%
+  mutate(Gender = as.factor(Gender),
+         Demographics.Response = as.factor(Demographics.Response))
+
+burns_food_age<-data%>%
+  filter(Question == " if she burns the food")%>%
+  filter(Demographics.Question == "Age")%>%
+  group_by(Gender, Demographics.Response)%>%
+  summarise(Value = mean(Value,na.rm=T))%>%
+  mutate(Gender = as.factor(Gender),
+         Demographics.Response = as.factor(Demographics.Response))
+
+burns_food_resid<-data%>%
+  filter(Question == " if she burns the food")%>%
+  filter(Demographics.Question == "Residence")%>%
+  group_by(Gender, Demographics.Response)%>%
+  summarise(Value = mean(Value,na.rm=T))%>%
+  mutate(Gender = as.factor(Gender),
+         Demographics.Response = as.factor(Demographics.Response))
+
+burns_food_empl<-data%>%
+  filter(Question == " if she burns the food")%>%
+  filter(Demographics.Question == "Employment")%>%
+  group_by(Gender, Demographics.Response)%>%
+  summarise(Value = mean(Value,na.rm=T))%>%
+  mutate(Gender = as.factor(Gender),
+         Demographics.Response = as.factor(Demographics.Response))
+
+
+
+
+# burns food
+ggplot(burns_food_marital, aes(x = Demographics.Response, y = Value, fill = Gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("#8B4789",  "#FFA500")) +
+  labs(x = "Marital status", y = "% agree with the question", fill = "Gender")
+
+ggplot(burns_food_educ, aes(x = Demographics.Response, y = Value, fill = Gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("#8B4789",  "#FFA500")) +
+  labs(x = "Education", y = "% agree with the question", fill = "Gender")
+
+ggplot(burns_food_age, aes(x = Demographics.Response, y = Value, fill = Gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("#8B4789",  "#FFA500")) +
+  labs(x = "Age", y = "% agree with the question", fill = "Gender")
+
+ggplot(burns_food_resid, aes(x = Demographics.Response, y = Value, fill = Gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("#8B4789",  "#FFA500")) +
+  labs(x = "Residence", y = "% agree with the question", fill = "Gender")
+
+ggplot(burns_food_empl, aes(x = Demographics.Response, y = Value, fill = Gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("#8B4789",  "#FFA500")) +
+  labs(x = "Employment", y = "% agree with the question", fill = "Gender")
+
+
+
+
+
 
 
