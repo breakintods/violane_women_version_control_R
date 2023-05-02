@@ -9,7 +9,7 @@ if (!require(pacman)) {
   require(pacman)
 }
 pacman::p_load(
-  tidyverse, gridExtra, trelliscopejs, maps, stringr
+  tidyverse, gridExtra, trelliscopejs, maps, stringr, grid
 )
 
 # data exploration
